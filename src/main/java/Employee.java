@@ -1,19 +1,27 @@
-public class Employee
+public class Employee implements Comparable<Employee>
 {
-    private String lastName;
+    private String id;
+    private String surName;
     private String firstName;
     private String secondName;
-    private String profession;
+    private String fio;
+    private String position;
 
-    public Employee() {
+    Employee(String id,String lastName, String firstName, String secondName, String profession) {
+        this.surName = lastName;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.position = profession;
+        this.fio = this.toString();
+        this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurName() {
+        return surName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurName(String lastName) {
+        this.surName = lastName;
     }
 
     public String getFirstName() {
@@ -32,11 +40,38 @@ public class Employee
         this.secondName = secondName;
     }
 
-    public String getProfession() {
-        return profession;
+    public String getPosition() {
+        return position;
     }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
+    public String getFio() {
+        return fio;
     }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+    @Override
+    public int compareTo(Employee o) {
+        return this.toString().compareTo(o.toString());
+    }
+    @Override
+    public String toString() {
+        return String.format("%-11s%-11s%-11s", this.surName, this.firstName, this.secondName);
+    }
+    @Override
+    public boolean equals(Object obj)
+    {
+        Employee employee = (Employee) obj;
+        return employee.getId().equals(this.id);
+    }
+
 }
